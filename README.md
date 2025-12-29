@@ -3,6 +3,16 @@
 A production-ready Terraform project demonstrating a hybrid-cloud Disaster Recovery (DR) strategy between **AWS (Primary)** and **GCP (Standby)**.
 
 
+### Prerequisites
+- AWS CLI configured with `AdministratorAccess`
+- GCP CLI (gcloud) configured with `Editor` project permissions
+- A local SSH key at `~/.ssh/lighthouse_key.pub`
+
+## 🛠 Tech Stack
+- IaC: Terraform
+- Cloud: AWS (EC2, VPC), GCP (Compute Engine, VPC)
+- Orchestration: K3s (Kubernetes)
+- OS: Ubuntu 22.04 LTS
 
 ## 🚀 The Architecture
 - **Primary Site (AWS):** A "Lighthouse" controller running on a t2.micro instance with K3s (Lightweight Kubernetes) pre-installed.
@@ -24,3 +34,8 @@ During testing, GCP `e2-micro` instances (1GB RAM) faced API timeouts. I resolve
 2. Initialize with `terraform init`.
 3. Deploy the primary site: `terraform apply`.
 4. Trigger a DR event: Change `dr_mode_active = true` in `terraform.tfvars` and re-apply.
+
+## 💰 Cost Optimization Features
+- **Zero-Cost Standby:** Using Terraform `count`, the GCP compute and subnetwork resources incur $0.00 cost during normal operations.
+- **Free-Tier Friendly:** Architected to run entirely within AWS and GCP Free Tiers (t2.micro and e2-micro).
+- **Resource Slimming:** Custom K3s flags reduce the memory footprint to fit within 1GB RAM constraints.
