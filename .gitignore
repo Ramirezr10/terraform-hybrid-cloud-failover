@@ -1,0 +1,18 @@
+# Terraform local state and backups
+*.tfstate
+*.tfstate.*
+.terraform/
+.terraform.lock.hcl
+
+# Sensitive variables
+terraform.tfvars
+*.tfvars.json
+
+# SSH Private Keys (NEVER upload these)
+*.pem
+lighthouse_key
+!*.pub
+
+# Credentials
+secrets.tfvars
+*.json
