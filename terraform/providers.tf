@@ -17,7 +17,7 @@ terraform {
 # Configure AWS using the variable for your named profile
 provider "aws" {
   region  = var.aws_region
-  profile = var.aws_profile # This pulls 'lighthouse-dr' from your tfvars
+  profile = var.aws_profile 
 }
 
 # Configure GCP using the project ID variable
